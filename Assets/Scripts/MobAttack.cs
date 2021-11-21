@@ -37,4 +37,9 @@ public class MobAttack : MonoBehaviour
         _capsule.DisabledCollier(attackCollider);
         _capsule.CooldownCoroutine(attackCooldown);
     }
+
+    public void AttackIfPossible()
+    {
+
+    }
 }

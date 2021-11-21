@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 3f;
     [SerializeField] private Animator _animator;
-    public PlayerControllerCapsule ctrl;
+    private PlayerControllerCapsule ctrl;
 
     void Start()
     {
@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log(ctrl._characterController.isGrounded ? DebugMessages.ON_THE_GROUND : DebugMessages.IN_THE_AIR);
 
         ctrl.SetMoveVelocity(CrossPlatformInputManager.GetAxis(InputManager.HORIZONTAL), CrossPlatformInputManager.GetAxis(InputManager.VERTICAL), moveSpeed);
-        ctrl.LookAtObject();
+        ctrl.SetActionAttack(CrossPlatformInputManager.GetButtonDown(InputManager.FIRE_1));
+        //ctrl.LookAtObject();
         ctrl.MoveJumpOrGravity(Input.GetButtonDown(InputManager.JUMP), jumpPower);
         ctrl.PlayMotionWalk(_animator, AnimatorParameters.MOVE_SPEED);
     }

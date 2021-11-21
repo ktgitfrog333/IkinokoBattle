@@ -9,22 +9,41 @@ public class PlayerControllerCapsule
 {
     public CharacterController _characterController { get; private set; }
     public Transform _transform { get; private set; }
-    public Vector3 _moveVelocity;
+    private Vector3 _moveVelocity;
+    private PlayerStatus _status;
+    private MobAttack _attack;
 
     public PlayerControllerCapsule(GameObject gameObject)
     {
         _characterController = gameObject.GetComponent<CharacterController>();
         _transform = gameObject.transform;
         //_moveVelocity = new Vector3();
+        _status = gameObject.GetComponent<PlayerStatus>();
+        _attack = gameObject.GetComponent<MobAttack>();
     }
 
     public void SetMoveVelocity(float horizontal, float vertical, float speed)
     {
-        _moveVelocity.x = horizontal * speed;
-        _moveVelocity.z = vertical * speed;
+        if (_status.IsMovable == true)
+        {
+            _moveVelocity.x = horizontal * speed;
+            _moveVelocity.z = vertical * speed;
+
+            LookAtObject();
+        }
+        else
+        {
+            _moveVelocity.x = 0f;
+            _moveVelocity.z = 0f;
+        }
     }
 
-    public void LookAtObject()
+    public void SetActionAttack(bool fire1)
+    {
+        _attack.AttackIfPossible();
+    }
+
+    private void LookAtObject()
     {
         _transform.LookAt(_transform.position + new Vector3(_moveVelocity.x, 0f, _moveVelocity.z));
     }
