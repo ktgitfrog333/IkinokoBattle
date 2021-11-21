@@ -40,6 +40,6 @@ public class MobAttack : MonoBehaviour
 
     public void AttackIfPossible()
     {
-
+        _capsule.AttackIfPossible();
     }
 }

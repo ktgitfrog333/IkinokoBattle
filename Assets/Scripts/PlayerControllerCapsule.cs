@@ -40,7 +40,10 @@ public class PlayerControllerCapsule
 
     public void SetActionAttack(bool fire1)
     {
-        _attack.AttackIfPossible();
+        if (fire1 == true)
+        {
+            _attack.AttackIfPossible();
+        }
     }
 
     private void LookAtObject()
