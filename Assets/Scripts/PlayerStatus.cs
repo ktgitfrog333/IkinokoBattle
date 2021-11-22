@@ -7,4 +7,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerStatus : MobStatus
 {
+    // TODO あとでプレイヤー向けにカスタムする
+    public float Life { get { return _life; } }
 }

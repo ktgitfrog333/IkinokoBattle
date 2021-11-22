@@ -21,7 +21,7 @@ public abstract class MobStatus : MonoBehaviour
     [SerializeField] private float lifeMax = 10f;
     protected Animator _animator;
     protected StateEnum _state = StateEnum.Normal;
-    private float _life;
+    public float _life { get; private set; }
 
     // Start is called before the first frame update
     protected virtual void Start()
